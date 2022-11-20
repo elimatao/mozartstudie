@@ -1,21 +1,24 @@
 import {Button} from "./utils";
 import {useState} from "react";
+import {CountDown} from "./utils";
 
-export default function Test({handleDivChange, globTestProgress}){
+export default function Test({handleDivChange, globTestProgress, reps, duration, startState=0}){
 
-    let [testProgress, setTestProgress] = useState(0);
-    const nTests = 2;
+    let [testProgress, setTestProgress] = useState(startState);
 
     // Startet den Vorbereitungs-Countdown
+    if(testProgress === -1){
+        return <Button handleClick={()=> setTestProgress(testProgress+1)}>Test starten</Button>
+    }
     if(testProgress === 0){
         return (
             <div className="text-center">
                 Bereite dich vor...
-                <h1><CountDown duration={2} func={()=>{setTestProgress(testProgress+1)}}/></h1>
+                <h1><CountDown duration={5} func={()=>{setTestProgress(testProgress+1)}}/></h1>
             </div>
         );
     }
-    else if(testProgress <= nTests){
+    else if(testProgress <= reps){
         let str = generateRandString();
         return (
             <>
@@ -25,8 +28,8 @@ export default function Test({handleDivChange, globTestProgress}){
                     </label>
                     <input autoFocus className="concentration-test-text form-control" id="test-input" type="text" />
                 </div>
-                <p className="text-center mt-3">Test {testProgress} von {nTests} -
-                    Zeit verbleibend: <CountDown duration={5} func={()=>{
+                <p className="text-center mt-3">Test {testProgress} von {reps} -
+                    Zeit verbleibend: <CountDown duration={duration} func={()=>{
                         // Räumt Inputfeld auf und startet Evaluierung
                         const inputField = document.getElementById('test-input');
                         let inputStr = inputField.value;
@@ -40,20 +43,6 @@ export default function Test({handleDivChange, globTestProgress}){
     }
     //return <Button handleClick={() => handleDivChange(testProgress)} isDisabled={false}>Weiter</Button>;
     handleDivChange(testProgress);
-}
-
-function CountDown({duration, func}){
-    let [remTime, setRemTime] = useState(duration);
-
-
-    const countTimeout = setTimeout(()=>{setRemTime(remTime-1);}, 1000);
-
-    if (remTime !== 0){
-        return <>{remTime}</>;
-    }
-    clearTimeout(countTimeout);
-    setRemTime(duration); // Bereitet den Counter für den nächsten Aufruf vor
-    return func();
 }
 
 function evalInput(input, solution, id){
