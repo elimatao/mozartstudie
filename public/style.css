@@ -1,0 +1,21 @@
+body{
+  font-family: Calibri;
+}
+
+.section{
+  border-radius: 0.375rem;
+  border: 1px solid lightgray;
+  padding: .5rem !important;
+  margin-bottom: 48px;
+}
+
+.concentration-test-text{
+  text-align: left;
+  letter-spacing: 8px;
+  font-size: 1rem;
+  font-family: monospace;
+}
+
+.active{
+  background-color: aliceblue;
+}
