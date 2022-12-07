@@ -39,7 +39,7 @@ export default function App() { // "export default" Macht die Funktion für ande
         setActiveDiv(activeDiv + 1);
     }
     function exitTest(locTestProgress){
-        setGlobTestProgress(globTestProgress + locTestProgress);
+        setGlobTestProgress(locTestProgress);
         changeDiv();
     }
     function terminateTest(){
@@ -56,6 +56,11 @@ export default function App() { // "export default" Macht die Funktion für ande
         changeDiv();
     }
 
+    // Löscht die Daten von abgebrochenen Tests. (bei Fensterschließung);
+    window.onbeforeunload = ()=>{
+        sessionStorage.clear();
+    }
+
     function renderActiveDiv(div){
         return (
             <Div key={div.id} isActive={true}>
@@ -68,7 +73,7 @@ export default function App() { // "export default" Macht die Funktion für ande
 
 
     // Rendert die gesamte App
-    if (windowSizeOk || (activeDiv!=1 && activeDiv != 3)) {
+    if (windowSizeOk) {
         return (
             <div className="App my-auto">
                 {renderActiveDiv(divs[activeDiv])}

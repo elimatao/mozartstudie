@@ -72,8 +72,13 @@ function saveData(){
 
     personData.age = document.getElementById("age").value;
     personData.gender = document.getElementById("gender").value;
-    personData.usedHeadphones = document.getElementById("usedHeadphones").value;
-    personData.enjoyedMedia = document.getElementById("enjoyedMedia").value;
+    try{
+        personData.usedHeadphones = document.getElementById("usedHeadphones").value;
+        personData.enjoyedMedia = document.getElementById("enjoyedMedia").value;
+    } catch (e) {
+        personData.usedHeadphones = null;
+        personData.enjoyedMedia = null;
+    }
 
     sessionStorage.setItem("personData", JSON.stringify(personData));
 }

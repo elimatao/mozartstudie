@@ -4,7 +4,7 @@ import {CountDown} from "./utils";
 
 export default function Test({handleDivChange, globTestProgress, reps, duration, startState=0}){
 
-    let [testProgress, setTestProgress] = useState(startState);
+    let [testProgress, setTestProgress] = useState(startState); // evtl. globTestProgress?
 
     // Startet den Vorbereitungs-Countdown
     if(testProgress === -1){
@@ -34,7 +34,7 @@ export default function Test({handleDivChange, globTestProgress, reps, duration,
                         const inputField = document.getElementById('test-input');
                         let inputStr = inputField.value;
                         inputField.value = "";
-                        evalInput(inputStr, str.solutionString, globTestProgress+testProgress);
+                        evalInput(inputStr, str.solutionString, (globTestProgress-1) + testProgress); // globTestProgress ist 1 zu hoch
 
                         setTestProgress(testProgress+1); // Beginnt nächsten Test
                     }}/> Sekunden</p>
