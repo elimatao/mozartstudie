@@ -1,6 +1,5 @@
 import YouTube from "react-youtube";
 import {CountDown, Button} from "./utils";
-import {useState} from "react";
 import {config} from "./Constants";
 
 export default function Music({handleDivChange}){
