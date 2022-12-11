@@ -1,5 +1,11 @@
+@font-face {
+  font-family: nsm;
+  src: url(./NotoSansMono-Medium.ttf);
+}
+
+
 .App {
-  font-family: Calibri;
+  /*font-family: nsm;*/
   font-size: 18px;
   margin: 0;
   position: absolute;
@@ -17,11 +23,12 @@
   /*margin-bottom: 48px;*/
 }
 
+/*@import url('https://fontlibrary.org/face/dejavu-sans-mono');*/
 .concentration-test-text{
   text-align: left;
-  letter-spacing: 8px;
+  letter-spacing: 8px; /* Macht nur Buchstaben auseinander, ändert nichts an den Breitenunterschieden einzelner Zeichen */
   font-size: 1rem;
-  font-family: monospace;
+  font-family: nsm;
 }
 
 .active{
