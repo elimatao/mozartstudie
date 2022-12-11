@@ -50,7 +50,7 @@ export function Introduction({handleDivChange}){
             <br />
             <p>
                 Alle "d" mit zwei Strichen, also <span className={"concentration-test-text"}>d&#782;,d&#840;</span>oder <span className={"concentration-test-text"}>d&#781;&#809;</span>
-                müssen mit einem "x" markiert werden. Alle anderen werden durch Drücken der Leertaste übersprungen. Probiere das in dem Feld oben aus.
+                müssen so schnell wie möglich mit einem "x" markiert werden. Alle anderen werden durch Drücken der Leertaste übersprungen. Probiere das in dem Feld oben aus.
             </p>
             Wir werden messen, wie gut es dir gelingt, die Buchstaben richtig zu markieren.
 

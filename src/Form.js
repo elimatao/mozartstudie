@@ -10,12 +10,12 @@ export default function Form({handleDivChange}){
                 </div>
             </div>
             <div className="form-group col-6">
-                <label className="" htmlFor="gender">Was ist dein Geschlecht?</label>
+                <label className="" htmlFor="gender">Welches Geschlecht hast du?</label>
                 <div className="">
                     <select className="form-control" id="gender">
-                        <option value="w">Weiblich</option>
-                        <option value="m">Männlich</option>
-                        <option value="d">Divers</option>
+                        <option value="w">weiblich</option>
+                        <option value="m">männlich</option>
+                        <option value="d">nicht-binär</option>
                         <option value="" selected>keine Angabe</option>
                     </select>
                 </div>
