@@ -1,20 +1,3 @@
-const prod = {
-    url: "https://elia-doumerc.herokuapp.com/",
-    test1:{
-        duration: 10,
-        reps: 10
-    },
-    test2:{
-        duration: 10,
-        reps: 10
-    },
-    startDiv: 0,
-    music:{
-        controls: 0,
-        duration: 300
-    },
-    minWidth: 980
-};
 const dev = {
     url: "http://localhost:5000/",
     test1:{
@@ -25,10 +8,29 @@ const dev = {
         duration: 3,
         reps: 2
     },
-    startDiv: 0,
+    startDiv: 0, // #######################################
     music: {
         controls: 2,
         duration: 5
+    },
+    minWidth: 980
+};
+
+
+const prod = {
+    url: "https://elia-doumerc.herokuapp.com/",
+    test1:{
+        duration: 15,
+        reps: 14
+    },
+    test2:{
+        duration: 15,
+        reps: 14
+    },
+    startDiv: 0,
+    music:{
+        controls: 0,
+        duration: 360
     },
     minWidth: 980
 };

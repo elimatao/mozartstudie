@@ -1,6 +1,7 @@
 import {Button} from "./utils";
 import {useState} from "react";
 import {CountDown} from "./utils";
+import {generateRandString} from "./utils";
 
 export default function Test({handleDivChange, globTestProgress, reps, duration, startState=0}){
 
@@ -68,27 +69,4 @@ function evalInput(input, solution, id){
     })
     sessionStorage.setItem("testData", JSON.stringify(testData));
 
-}
-
-function generateRandString(){
-    const strLen = 56
-    const characters = ['d', 'p']
-    const modifiers = ['\u{0348}', '\u{030D}\u{0329}', '\u{030E}',
-        '\u{0329}', '\u{030D}', '\u{030D}\u{0348}', '\u{030E}\u{0329}', '\u{030E}\u{0348}']
-
-    let randString = "";
-    let solutionString = "";
-
-    for (let i=0;i<strLen;i++){
-        let posCharacter = Math.floor(Math.random() * characters.length);
-        let posModifier = Math.floor(Math.random() * modifiers.length);
-
-        if(posCharacter === 0 && posModifier <= 2){
-            solutionString += "x";
-        } else{
-            solutionString += " ";
-        }
-        randString += characters[posCharacter] + modifiers[posModifier];
-    }
-    return {solutionString, randString};
 }

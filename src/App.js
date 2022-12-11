@@ -10,7 +10,7 @@ import {Button} from "./utils";
 
 export default function App() { // "export default" Macht die Funktion für andere Module verfügbar und zur Hauptfunktion des Moduls.
     const [activeDiv, setActiveDiv] = useState(config.startDiv); // 2 ist gedacht, damit der Test als erstes erscheint.
-    const [globTestProgress, setGlobTestProgress] = useState(0); // Wie viele Tests (Zeile mit d und p) wurden insgesamt durchgeführt.
+    const [globTestProgress, setGlobTestProgress] = useState(1); // Wie viele Tests (Zeile mit d und p) wurden insgesamt durchgeführt. 1 fixt bug
     const [windowSizeOk, setWindowSizeOk] = useState(satisfiesScreenSizeRequirement());
 
     // Struktur der Studie

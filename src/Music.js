@@ -5,10 +5,11 @@ import {config} from "./Constants";
 export default function Music({handleDivChange}){
     let mediaOptions = [{
         name: "Mozart",
-        youtubeId: "OkFyG6Xg2i0"
+        youtubeId: "FncKQV-jTpM"
     }, {
         name: "Quevedo",
         youtubeId: "FflHntvNFx4"
+        //youtubeId: "PLiZIqm1jS_xuEFuTWc1D1ZDWUlVu0B2-f"
     },{
         name: "Queen",
         youtubeId: "lD5J-lroElM"
@@ -31,7 +32,7 @@ export default function Music({handleDivChange}){
 
     if (media["name"] === ""){
         return (
-            <p>Please wait: {<CountDown duration={config.music.duration} func={() => {saveData(media["name"]); handleDivChange();}}/>} seconds remaining.</p>
+            <p>Bitte warte: {<CountDown duration={config.music.duration} func={() => {saveData(media["name"]); handleDivChange();}}/>} Sekunden verbleibend.</p>
         )
     }
 

@@ -51,11 +51,10 @@ export default function Form({handleDivChange}){
                     <label className="" htmlFor="enjoyedMedia">Wie hat dir die Musik gefallen?</label>
                     <div className="">
                         <select className="form-control" id="enjoyedMedia">
-                            <option value="5" selected>Hat mir sehr gefallen</option>
-                            <option value="4">OK</option>
-                            <option value="3">Besser als Unterricht</option>
-                            <option value="2">Laaaangweilig</option>
-                            <option value="1">Schlimmste Zeit meines Lebens</option>
+                            <option value="4" selected>Hat mir sehr gefallen</option>
+                            <option value="3">Hat mir eher gefallen</option>
+                            <option value="2">Hat mir eher nicht gefallen</option>
+                            <option value="1">Hat mir überhaupt nicht gefallen</option>
                         </select>
                     </div>
                 </div>
