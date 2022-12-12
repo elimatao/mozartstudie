@@ -1,15 +1,17 @@
 import YouTube from "react-youtube";
 import {CountDown, Button} from "./utils";
 import {config} from "./Constants";
+import {useState} from "react";
 
 export default function Music({handleDivChange}){
+
     let mediaOptions = [{
         name: "Mozart",
         youtubeId: "FncKQV-jTpM"
     }, {
         name: "Quevedo",
-        youtubeId: "FflHntvNFx4"
-        //youtubeId: "PLiZIqm1jS_xuEFuTWc1D1ZDWUlVu0B2-f"
+        youtubeId: "YGKMcq7srCU",
+        end: "360"
     },{
         name: "Queen",
         youtubeId: "lD5J-lroElM"
@@ -32,9 +34,15 @@ export default function Music({handleDivChange}){
 
     if (media["name"] === ""){
         return (
-            <p>Bitte warte: {<CountDown duration={config.music.duration} func={() => {saveData(media["name"]); handleDivChange();}}/>} Sekunden verbleibend.</p>
+            <MusicCountDown handleDivChange={()=>{
+                saveData(media["name"]);
+                handleDivChange();
+            }} />
         )
     }
+    try{
+        opts.playerVars.end = media["end"];
+    } catch (e){}
 
     return (
         <>
@@ -49,6 +57,18 @@ export default function Music({handleDivChange}){
             />
         </>
     )
+}
+
+function MusicCountDown({handleDivChange}){
+    let [remTime, setRemTime] = useState(config.music.duration);
+
+    if (remTime > 0){
+        return (
+            <p>Bitte warte: {<CountDown remTime={remTime} setRemTime={setRemTime}/>} Sekunden verbleibend.</p>
+        )
+    } else {
+        handleDivChange();
+    }
 }
 
 function saveData(mediaName){

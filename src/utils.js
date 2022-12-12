@@ -1,26 +1,61 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 
-export function Button({handleClick, isDisabled=false, children}){
+export function Button({handleClick, isDisabled=false, children, color="primary", extraClasses}){
     return(
-        <button className={"btn btn-primary d-block mx-auto my-3" + (isDisabled ? " disabled" : "") }
+        <button className={`btn btn-${color} d-block mx-auto my-3` + (isDisabled ? " disabled " : " ") + extraClasses}
                 onClick={handleClick}>{children}</button>
     )
 }
 
-// What if this returned a boolean instead of a number --- or just a variable?
-export function CountDown({duration, func}){
+
+
+export function CountDown({remTime, setRemTime}){
+    setTimeout(()=>{return setRemTime(remTime-1)}, 1000);
+    return remTime;
+}
+
+/*// What if this returned a boolean instead of a number --- or just a variable?
+export function CountDown2({duration, func}){
     let [remTime, setRemTime] = useState(duration);
+    // Läuft, sobald remTime geändert wird.
+    useEffect(() => {
 
+        const countTimeout = setTimeout(()=>{setRemTime(remTime-1);}, 1000);
 
-    const countTimeout = setTimeout(()=>{setRemTime(remTime-1);}, 1000);
+        // Wird ausgeführt, sobald die Komponente unmounted wird.
+        return () => {
+            setRemTime(duration);
+            clearTimeout(countTimeout);
+        }
+    }, [remTime])
+
 
     if (remTime !== 0){
         return <>{remTime}</>;
     }
-    clearTimeout(countTimeout);
-    setRemTime(duration); // Bereitet den Counter für den nächsten Aufruf vor
-    return func();
+
+    // setRemTime(duration); // Bereitet den Counter für den nächsten Aufruf vor
+    func();
 }
+
+export class CountDown3 extends React.Component {
+    constructor(props) {
+        super(props); // Übernimmt alle Properties, die beim Aufruf übergeben wurden.
+        this.state = {remTime: props.duration}
+    }
+    let [remTime, setRemTime] = useState(duration);
+    // Läuft, sobald remTime geändert wird.
+    useEffect(() => {
+
+    const countTimeout = setTimeout(()=>{setRemTime(remTime-1);}, 1000);
+
+    // Wird ausgeführt, sobald die Komponente unmounted wird.
+    return () => {
+    clearTimeout(countTimeout);
+}
+}, [remTime])
+*/
+
 
 export function generateRandString(strLen=56){
     const goodChars = ['d\u{0348}', 'd\u{030D}\u{0329}', 'd\u{030E}']

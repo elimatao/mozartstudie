@@ -1,7 +1,9 @@
 const dev = {
     url: "http://localhost:5000/",
+
+    testCountDown: 1,
     test1:{
-        duration: 3,
+        duration: 4,
         reps: 2
     },
     test2:{
@@ -19,6 +21,7 @@ const dev = {
 
 const prod = {
     url: "https://elia-doumerc.herokuapp.com/",
+    testCountDown: 5,
     test1:{
         duration: 15,
         reps: 14
