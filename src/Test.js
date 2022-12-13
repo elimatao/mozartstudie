@@ -108,12 +108,11 @@ export function TestInput({currInput, setCurrInput}){
 }
 
 function evalInput(input, solution, id){
-    input = input.replaceAll(/\S/g, 'x');
     let aF = 0;
     let vF = 0;
     for(let i=0;i<input.length;i++){
-        if(input[i]=== ' ' && solution[i] !== ' ') aF++;
-        else if(input[i]!== ' ' && solution[i] === ' ') vF++;
+        if(input[i]=== '_' && solution[i] !== '_') aF++;
+        else if(input[i]!== '_' && solution[i] === '_') vF++;
     }
 
     let testData = JSON.parse(sessionStorage.getItem("testData"));

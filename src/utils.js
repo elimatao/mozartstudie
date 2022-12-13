@@ -24,7 +24,7 @@ export function generateRandString(strLen=56){
             randString += goodChars[posChar];
         } else{
             let posChar = Math.floor(Math.random() * badChars.length);
-            solutionString += " ";
+            solutionString += "_";
             randString += badChars[posChar];
         }
     }
