@@ -1,7 +1,6 @@
 import YouTube from "react-youtube";
-import {CountDown, Button} from "./utils";
 import {config} from "./Constants";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 export default function Music({handleDivChange}){
 
@@ -66,13 +65,15 @@ export default function Music({handleDivChange}){
 function MusicCountDown({handleDivChange}){
     let [remTime, setRemTime] = useState(config.music.duration);
 
-    if (remTime > 0){
-        return (
-            <p>Bitte warte: {<CountDown remTime={remTime} setRemTime={setRemTime}/>} Sekunden verbleibend.</p>
-        )
-    } else {
-        handleDivChange();
-    }
+    useEffect(()=>{
+        if(remTime>0){
+            setTimeout(()=>setRemTime(remTime-1), 1000);
+        } else{
+            handleDivChange();
+        }
+    })
+
+    return <p>Bitte warte: {remTime} Sekunden verbleibend.</p>
 }
 
 function saveData(mediaId){
