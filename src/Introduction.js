@@ -1,9 +1,8 @@
-import {Button} from "./utils";
-import {generateRandString} from "./utils";
 import {useState} from "react";
 import {TestInput} from "./Test";
+import {Button} from "./utils";
 
-export function Introduction({handleDivChange}){
+export default function Introduction({handleDivChange}){
     const [currInput, setCurrInput] = useState("");
     const solutionStr = "__x___x____x___";
     // d&#782;&#809;p&#781;&#809;d&#782;p&#809;p&#782;&#840;d&#781;d&#781;&#809;p&#782;p&#781;d&#782;&#809;d&#782;&#840;d&#840;d&#782;&#840;p&#781;&#809;p&#782;
@@ -14,11 +13,11 @@ export function Introduction({handleDivChange}){
 
     var renderedStr = str.map((c, i)=>{
         if(currInput[i] === solutionStr[i]){
-            return <span className={"text-success"}>{c}</span>;
+            return <span key={i} className={"text-success"}>{c}</span>;
         }
         else{
             inputCorrect = false;
-            return <span className={"text-danger"}>{c}</span>;
+            return <span key={i} className={"text-danger"}>{c}</span>;
         }
     })
 
@@ -28,7 +27,7 @@ export function Introduction({handleDivChange}){
             <p>Vielen Dank dafür, dass du dir die Zeit nimmst, an dieser Studie teilzunehmen. Damit trägst du direkt zum Fortschritt der Wissenschaft bei.
                 Wir wollen nämlich herausfinden, ob Musik einen Einfluss auf unsere Konzentrationsleistung hat.
             </p>
-            <p>Dazu gehen wir folgenderweise vor:
+            Dazu gehen wir folgenderweise vor:
                 <ol>
                     <li>Du führst einen Konzentrationstest durch, mehr dazu gleich.</li>
                     <li>Du wartest für einige Minuten in Stille oder hörst Musik. Bitte verwende dazu Kopfhörer.</li>
@@ -36,7 +35,7 @@ export function Introduction({handleDivChange}){
                     <li>Du beantwortest ein paar Fragen.</li>
                     <li>Wir werten die Daten aus und veröffentlichen hier bald unsere Ergebnisse. Alles ist natürlich komplett <b>anonym</b>.</li>
                 </ol>
-            </p>
+
             <h2>So funktioniert der Test</h2>
             <p>Du bekommst in kurzer Zeit hintereinander mehrere Eingabefelder so wie dieses hier:</p>
 
@@ -56,7 +55,7 @@ export function Introduction({handleDivChange}){
                 Ansonsten muss es mit einem <span className="bg-danger rounded px-2 pb-1 text-white">_</span> (Leerzeichen) markiert werden.
                 Löschen kannst du die Markierungen mit <span className="bg-warning rounded px-2 pb-1 text-white">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black"
-                                                                                                                 className="bi bi-backspace" viewBox="0 0 16 16">
+                         className="bi bi-backspace" viewBox="0 0 16 16">
                         <path
                             d="M5.83 5.146a.5.5 0 0 0 0 .708L7.975 8l-2.147 2.146a.5.5 0 0 0 .707.708l2.147-2.147 2.146 2.147a.5.5 0 0 0 .707-.708L9.39 8l2.146-2.146a.5.5 0 0 0-.707-.708L8.683 7.293 6.536 5.146a.5.5 0 0 0-.707 0z"/>
                         <path
@@ -73,14 +72,5 @@ export function Introduction({handleDivChange}){
 
             <Button handleClick={handleDivChange} isDisabled={!inputCorrect}>Verstanden, Test beginnen</Button>
         </div>
-    );
-}
-
-export function Conclusion(){
-    return(
-        <>
-            <h1>Vielen Dank für deine Teilnahme!</h1>
-            <p>Du kannst dieses Fenster jetzt schließen.</p>
-        </>
     );
 }

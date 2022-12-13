@@ -37,23 +37,6 @@ export function CountDown2({duration, func}){
     // setRemTime(duration); // Bereitet den Counter für den nächsten Aufruf vor
     func();
 }
-
-export class CountDown3 extends React.Component {
-    constructor(props) {
-        super(props); // Übernimmt alle Properties, die beim Aufruf übergeben wurden.
-        this.state = {remTime: props.duration}
-    }
-    let [remTime, setRemTime] = useState(duration);
-    // Läuft, sobald remTime geändert wird.
-    useEffect(() => {
-
-    const countTimeout = setTimeout(()=>{setRemTime(remTime-1);}, 1000);
-
-    // Wird ausgeführt, sobald die Komponente unmounted wird.
-    return () => {
-    clearTimeout(countTimeout);
-}
-}, [remTime])
 */
 
 

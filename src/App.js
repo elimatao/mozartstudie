@@ -1,7 +1,8 @@
 import Test from "./Test";  // Führt den Konzentrationstest durch
 import Form from "./Form";
 import Music from "./Music";
-import {Introduction, Conclusion} from "./StaticContent";
+import Introduction from "./Introduction"
+import Conclusion from "./Conclusion";
 
 import {useState} from "react";
 
@@ -25,12 +26,15 @@ export default function App() { // "export default" Macht die Funktion für ande
         children: <Music handleDivChange={changeDiv}/>
     }, {
         id: 3,
-        children: <Test handleDivChange={exitTest} globTestProgress={globTestProgress} reps={config.test2.reps} duration={config.test2.duration} startState={-1}/>
+        children: <Button handleClick={changeDiv}>Test starten</Button>  // Startet den Vorbereitungs-Countdown
     }, {
         id: 4,
-        children: <Form handleDivChange={terminateTest}/>
+        children: <Test handleDivChange={exitTest} globTestProgress={globTestProgress} reps={config.test2.reps} duration={config.test2.duration}/>
     }, {
         id: 5,
+        children: <Form handleDivChange={terminateTest}/>
+    }, {
+        id: 6,
         children: <Conclusion />
     }];
 
