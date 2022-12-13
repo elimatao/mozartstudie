@@ -111,9 +111,18 @@ export function TestInput({currInput, setCurrInput}){
             <div className="concentration-test-text form-control" id="test-input">{currInput}</div>
 
             <div className="mx-auto" style={{width: "fit-content"}}>
-                <Button color="success" handleClick={() => {setCurrInput(currInput + "x")}} extraClasses="x_">X</Button>
-                <Button color="danger" handleClick={() => {setCurrInput(currInput + "_")}} extraClasses="x_">_</Button>
-                <Button color="warning" handleClick={() => {setCurrInput(currInput.slice(0, -1))}} extraClasses="x_">
+                <Button color="success" handleClick={({target}) => {
+                    setCurrInput(currInput + "x");
+                    target.blur();
+                }} extraClasses="x_">X</Button>
+                <Button color="danger" handleClick={({target}) => {
+                    setCurrInput(currInput + "_");
+                    target.blur();
+                }} extraClasses="x_">_</Button>
+                <Button color="warning" handleClick={({target}) => {
+                    setCurrInput(currInput.slice(0, -1));
+                    target.blur();
+                }} extraClasses="x_">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                          className="bi bi-backspace" viewBox="0 0 16 16">
                         <path
