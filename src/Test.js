@@ -1,6 +1,5 @@
 import {Button} from "./utils";
 import {useState, useEffect} from "react";
-import {CountDown} from "./utils";
 import {generateRandString} from "./utils";
 import {config} from "./Constants";
 
@@ -11,11 +10,17 @@ export default function Test({handleDivChange, globTestProgress, reps, duration,
     let [str, setStr] = useState(generateRandString());
     let [remTime, setRemTime] = useState(config.testCountDown); // Countdown-Zeit ändern
 
-    setTimeout(()=>{setRemTime(remTime-1)}, 1000);
-
     useEffect(()=>{
+        setTimeout(()=>{setRemTime(remTime-1)}, 1000); // Funktioniert irgendwie
+
         if (remTime == 0){
-            setRemTime(duration);
+
+            if (testProgress > 0){
+                // Schließt letzten Test ab.
+                evalInput(currInput, str.solutionString, (globTestProgress-1) + testProgress); // globTestProgress ist 1 zu hoch
+                setCurrInput("");
+            }
+
             setTestProgress(testProgress+1);
         }
     }, [remTime])
@@ -23,14 +28,13 @@ export default function Test({handleDivChange, globTestProgress, reps, duration,
     useEffect(()=>{
         if (testProgress == 0){
             // Nichts?
-        } else if (testProgress <= reps){
-            // Räumt Inputfeld auf und startet Evaluierung
-            evalInput(currInput, str.solutionString, (globTestProgress-1) + testProgress); // globTestProgress ist 1 zu hoch
-            setCurrInput("");
-
+        }
+        else if (testProgress <= reps){
+            // Startet neuen Test
             setStr(generateRandString());// generiert neue Strings
+            setRemTime(duration);
 
-        } else{
+        } else if (testProgress > reps){
             handleDivChange(testProgress); // alles aufräumen
         }
     }, [testProgress])
@@ -57,63 +61,10 @@ export default function Test({handleDivChange, globTestProgress, reps, duration,
     );
 }
 
-export function Test2({handleDivChange, globTestProgress, reps, duration, startState=0}){
-
-    let [testProgress, setTestProgress] = useState(startState); // evtl. globTestProgress?
-    let [currInput, setCurrInput] = useState("");
-    let [str, setStr] = useState(generateRandString());
-    let [remTime, setRemTime] = useState(config.testCountDown); // Countdown-Zeit ändern
-
-    if(testProgress === 0){
-        if (remTime > 0){
-            return (
-                <div className="text-center">
-                    Bereite dich vor...
-                    <h1><CountDown remTime={remTime} setRemTime={setRemTime}/></h1>
-                </div>
-            );
-        } else{
-            // State updates werden gemerged?
-            setRemTime(duration);
-            setTestProgress(testProgress+1);
-        }
-    }
-    else if(testProgress <= reps){
-        if (remTime > 0){
-            return (
-                <>
-                    <div className="form-group">
-                        <label htmlFor="test-1" className="concentration-test-text pb-2" style={{paddingLeft: '13px'}} >
-                            {str.randString}
-                        </label>
-                        <TestInput currInput={currInput} setCurrInput={setCurrInput}/>
-                    </div>
-
-                    <p className="text-center mt-3">Test {testProgress} von {reps} -
-                        Zeit verbleibend: <CountDown remTime={remTime} setRemTime={setRemTime}/> Sekunden</p>
-                </>
-            );
-        } else{
-            // Räumt Inputfeld auf und startet Evaluierung
-            evalInput(currInput, str.solutionString, (globTestProgress-1) + testProgress); // globTestProgress ist 1 zu hoch
-            setCurrInput("");
-
-            // Bereitet für nächsten Durchlauf vor.
-            setStr(generateRandString());// generiert neue Strings
-            setRemTime(duration);
-            setTestProgress(testProgress+1); // Beginnt nächsten Test
-        }
-
-    } else{
-        handleDivChange(testProgress);
-    }
-
-}
-
 export function TestInput({currInput, setCurrInput}){
 
     useEffect(()=>{
-        window.onkeydown  = (e) => {
+          window.onkeydown  = (e) => {
             if (e.code === "KeyX"){
                 setCurrInput(currInput + "x");
             } else if (e.code === "Space"){

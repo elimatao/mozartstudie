@@ -6,18 +6,22 @@ import {useState} from "react";
 export default function Music({handleDivChange}){
 
     let mediaOptions = [{
-        name: "Mozart",
-        youtubeId: "FncKQV-jTpM"
+        name: "Zauberflöte",
+        youtubeId: "FncKQV-jTpM",
+        id: 4
+    }, {
+        name: "Innuendo",
+        youtubeId: "lD5J-lroElM",
+        id: 3
     }, {
         name: "Quevedo",
         youtubeId: "YGKMcq7srCU",
+        id: 2,
         end: "360"
-    },{
-        name: "Queen",
-        youtubeId: "lD5J-lroElM"
     }, {
         name: "",
-        youtubeId: ""
+        youtubeId: "",
+        id: 1
     }];
 
     const opts = {
@@ -32,10 +36,10 @@ export default function Music({handleDivChange}){
     const mediaIndex = Math.floor(Math.random() * mediaOptions.length)
     const media = (mediaOptions[mediaIndex]);
 
-    if (media["name"] === ""){
+    if (media["id"] === 1){
         return (
             <MusicCountDown handleDivChange={()=>{
-                saveData(media["name"]);
+                saveData(media["id"]);
                 handleDivChange();
             }} />
         )
@@ -51,7 +55,7 @@ export default function Music({handleDivChange}){
                 videoId={media["youtubeId"]}
                 title={media["name"]}
                 opts={opts}
-                onEnd={() => {saveData(media["name"]); handleDivChange();}}
+                onEnd={() => {saveData(media["id"]); handleDivChange();}}
                 // host="https://www.youtube-nocookie.com" --- Geht leider nicht.
                 style={{borderRadius: ".375rem",border: "1px solid black", background: "black"}}
             />
@@ -71,10 +75,10 @@ function MusicCountDown({handleDivChange}){
     }
 }
 
-function saveData(mediaName){
+function saveData(mediaId){
     let personData = JSON.parse(sessionStorage.getItem("personData"));
     if (personData === null) personData = {};
 
-    personData.mediaName = mediaName;
+    personData.mediaId = mediaId;
     sessionStorage.setItem("personData", JSON.stringify(personData));
 }

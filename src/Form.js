@@ -16,7 +16,7 @@ export default function Form({handleDivChange}){
                         <option value="w">weiblich</option>
                         <option value="m">männlich</option>
                         <option value="d">nicht-binär</option>
-                        <option value="" selected>keine Angabe</option>
+                        <option value="-" selected>keine Angabe</option>
                     </select>
                 </div>
             </div>
@@ -24,7 +24,7 @@ export default function Form({handleDivChange}){
     )
 
     let personData = JSON.parse(sessionStorage.getItem("personData"));
-    if(personData === null || personData["mediaName"] === ""){
+    if(personData === null || personData["mediaId"] === 1){
         return (
             <>
                 {baseForm}
