@@ -49,10 +49,10 @@ export default function Introduction({handleDivChange}){
 
             <br />
             <p>
-                Du musst dann so schnell wie möglich die Zeichen markieren. Wenn ein Zeichen ein "d" mit zwei Strichen ist,
+                Du musst dann so schnell wie möglich die Zeichen markieren. Alle "d" mit zwei Strichen,
                 also <span className={"concentration-test-text"}>d&#782;,d&#840;</span>oder <span className={"concentration-test-text"}>d&#781;&#809;</span>,
-                dann muss es mit einem <span className="bg-success rounded px-2 pb-1 text-white">x</span> markiert werden (Das kannst du mit der Tastatur oder der Maus machen.).
-                Ansonsten muss es mit einem <span className="bg-danger rounded px-2 pb-1 text-white">_</span> (Leerzeichen) markiert werden.
+                müssen mit einem <span className="bg-success rounded px-2 pb-1 text-white">x</span> markiert werden (Das kannst du mit der Tastatur oder den Knöpfen machen.).
+                Alle anderen Zeichen müssen mit einem <span className="bg-danger rounded px-2 pb-1 text-white">_</span> (Leerzeichen) markiert werden.
                 Löschen kannst du die Markierungen mit <span className="bg-warning rounded px-2 pb-1 text-white">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black"
                          className="bi bi-backspace" viewBox="0 0 16 16">

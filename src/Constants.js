@@ -10,7 +10,7 @@ const dev = {
         duration: 3,
         reps: 2
     },
-    startDiv: 1, // #######################################
+    startDiv: 0, // #######################################
     music: {
         controls: 2,
         duration: 5
@@ -23,11 +23,11 @@ const prod = {
     url: "https://elia-doumerc.herokuapp.com/",
     testCountDown: 5,
     test1:{
-        duration: 15,
+        duration: 14,
         reps: 14
     },
     test2:{
-        duration: 15,
+        duration: 14,
         reps: 14
     },
     startDiv: 0,
