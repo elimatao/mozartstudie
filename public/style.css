@@ -1,9 +1,6 @@
 @font-face {
   font-family: nsm;
   src: url(./NotoSansMono-VariableFont_wdth,wght.ttf);
-}
-@font-face {
-  font-family: nsm-s;
   src: url(./NotoSansMono-Medium.ttf);
 }
 
@@ -37,7 +34,7 @@
   text-align: left;
   letter-spacing: 8px; /* Macht nur Buchstaben auseinander, ändert nichts an den Breitenunterschieden einzelner Zeichen */
   font-size: 1rem;
-  font-family: nsm, nsm-s;
+  font-family: nsm;
 }
 
 #test-input{
