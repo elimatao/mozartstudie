@@ -1,26 +1,10 @@
-import {useState} from "react";
-import {TestInput} from "./Test";
+import {useEffect, useState} from "react";
 import {Button} from "./utils";
+import TestInput from "./TestInput";
+import TestOutput from "./TestOutput";
 
 export default function Introduction({handleDivChange}){
-    const [currInput, setCurrInput] = useState("");
-    const solutionStr = "__x___x____x___";
-    // d&#782;&#809;p&#781;&#809;d&#782;p&#809;p&#782;&#840;d&#781;d&#781;&#809;p&#782;p&#781;d&#782;&#809;d&#782;&#840;d&#840;d&#782;&#840;p&#781;&#809;p&#782;
-    const str = ["d\u{30E}\u{329}", "p\u{30D}\u{329}", "d\u{30E}", "p\u{329}", "p\u{30E}\u{348}", "d\u{30D}", "d\u{30D}\u{329}",
-        "p\u{30E}", "p\u{30D}", "d\u{30E}\u{329}", "d\u{30E}\u{348}", "d\u{348}", "d\u{30E}\u{348}", "p\u{30D}\u{329}", "p\u{30E}"];
-
-    let inputCorrect = true;
-
-    var renderedStr = str.map((c, i)=>{
-        if(currInput[i] === solutionStr[i]){
-            return <span key={i} className={"text-success"}>{c}</span>;
-        }
-        else{
-            inputCorrect = false;
-            return <span key={i} className={"text-danger"}>{c}</span>;
-        }
-    })
-
+    let [inputCorrect, setInputCorrect] = useState(false);
     return(
         <div style={{maxWidth: "1096px"}}>
             <h1>Hallo und willkommen zu dieser Studie!</h1>
@@ -39,13 +23,7 @@ export default function Introduction({handleDivChange}){
             <h2>So funktioniert der Test</h2>
             <p>Du bekommst in kurzer Zeit hintereinander mehrere Eingabefelder so wie dieses hier:</p>
 
-
-            <div className="form-group">
-                <label htmlFor="test-1" className="concentration-test-text pb-2" style={{paddingLeft: '13px'}} >
-                    {renderedStr}
-                </label>
-                <TestInput currInput={currInput} setCurrInput={setCurrInput} />
-            </div>
+            <IntroductionTest setInputCorrect={setInputCorrect}/>
 
             <br />
             <p>
@@ -71,6 +49,54 @@ export default function Introduction({handleDivChange}){
             Wir werden messen, wie gut es dir gelingt, die Buchstaben richtig zu markieren.
 
             <Button handleClick={handleDivChange} isDisabled={!inputCorrect}>Verstanden, Test beginnen</Button>
+        </div>
+    );
+}
+
+
+function IntroductionTest({setInputCorrect}){
+    const [currInput, setCurrInput] = useState("");
+    
+    let inputCorrect = true;
+
+    const solutionStr = "__x___x____x___";
+    
+    // d&#782;&#809;p&#781;&#809;d&#782;p&#809;p&#782;&#840;d&#781;d&#781;&#809;p&#782;p&#781;d&#782;&#809;d&#782;&#840;d&#840;d&#782;&#840;p&#781;&#809;p&#782;
+    // String, zur Übung
+    const str = ["d\u{30E}\u{329}", "p\u{30D}\u{329}", "d\u{30E}", "p\u{329}", "p\u{30E}\u{348}", "d\u{30D}", "d\u{30D}\u{329}",
+        "p\u{30E}", "p\u{30D}", "d\u{30E}\u{329}", "d\u{30E}\u{348}", "d\u{348}", "d\u{30E}\u{348}", "p\u{30D}\u{329}", "p\u{30E}"];
+
+    var renderedStrL = [];
+    var renderedStrR = [];
+    
+    str.map((c, i)=>{  // c: Objekt aus der Liste, i: Listenindex
+        if(currInput[i] === undefined){
+            renderedStrR.push(<span key={i}>{c}</span>);
+            inputCorrect = false;
+        }
+        
+        else if(currInput[i] === solutionStr[i]){
+            renderedStrL.push(<span key={i} className={"text-success"}>{c}</span>);
+        }
+        else{
+            renderedStrL.push(<span key={i} className={"text-danger"}>{c}</span>);
+            inputCorrect = false;
+        }
+    })
+
+
+    useEffect(()=>{
+        setInputCorrect(inputCorrect);
+    }, [inputCorrect]);
+    
+    useEffect(()=>{
+        setCurrInput(currInput.slice(0, str.length));
+    }, [currInput])
+
+    return(
+        <div className="form-group">
+            <TestOutput currInput={currInput} renderedStrL={renderedStrL} renderedStrR={renderedStrR}/>
+            <TestInput currInput={currInput} setCurrInput={setCurrInput} />
         </div>
     );
 }

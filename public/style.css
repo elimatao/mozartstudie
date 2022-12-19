@@ -35,10 +35,11 @@
   letter-spacing: 8px; /* Macht nur Buchstaben auseinander, ändert nichts an den Breitenunterschieden einzelner Zeichen */
   font-size: 1rem;
   font-family: nsm;
+  overflow: hidden;
 }
 
 #test-input{
-  min-height: 38px;
+  min-height: 2rem;
 }
 .x_{
   min-height: 48px;
@@ -50,4 +51,31 @@
 
 .active{
   background-color: aliceblue;
+}
+
+
+.concentration-test-text-left{
+  text-align: right;
+  width: 50%;
+  display: inline-block;
+  max-width: none;
+  white-space: nowrap;
+}
+
+.concentration-test-text-right{
+  text-align: left;
+  width: 50%;
+  display: inline-block;
+  max-width: none;
+}
+
+#nextActiveInputHighlighter{
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  height: 4rem;
+  width: 1rem;
+  border: 1px solid red;
+  border-radius: 4px;
+  margin-left: -3px; /* Positioniert div mittig über Buchstabe*/
 }

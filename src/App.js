@@ -12,7 +12,6 @@ import {Button} from "./utils";
 export default function App() { // "export default" Macht die Funktion für andere Module verfügbar und zur Hauptfunktion des Moduls.
     const [activeDiv, setActiveDiv] = useState(config.startDiv); // 2 ist gedacht, damit der Test als erstes erscheint.
     const [globTestProgress, setGlobTestProgress] = useState(1); // Wie viele Tests (Zeile mit d und p) wurden insgesamt durchgeführt. 1 fixt bug
-    const [windowSizeOk, setWindowSizeOk] = useState(satisfiesScreenSizeRequirement());
 
     // Struktur der Studie
     const divs = [{
@@ -73,37 +72,15 @@ export default function App() { // "export default" Macht die Funktion für ande
         );
     }
 
-    window.onresize = ()=>{setWindowSizeOk(satisfiesScreenSizeRequirement())}; // Überprüft Bildschirmbreite bei jeder Breitenänderung
-
 
     // Rendert die gesamte App
-    if (windowSizeOk) {
-        return (
-            <div className="App my-auto">
-                {renderActiveDiv(divs[activeDiv])}
-            </div>
-        );
-    } else{
-        return (
-            <div className="App my-auto">
-                <Div isActive={true}>
-                    <h1 className={"text-danger"}>Dein Bildschirm ist nicht breit genug!</h1>
-                    <p>Der Test wurde jetzt abgebrochen.</p>
-                    <p>Bitte benutze ein anderes Gerät,
-                        versuche das Gerät im Querformat zu verwenden oder markiere in deinen Browseroptionen die Option
-                        "Desktopseite".</p>
-                    <Button handleClick={()=>{
-                        sessionStorage.clear();
-                        window.location.reload();
-                    }}>Weiter</Button>
-                </Div>
-            </div>
-
-        )
-    }
-
+    return (
+        <div className="App my-auto">
+            {renderActiveDiv(divs[activeDiv])}
+        </div>
+    )
 }
-
+    
 function Div({ children, isActive=false}) {
 
     return (
@@ -111,8 +88,4 @@ function Div({ children, isActive=false}) {
             {children}
         </div>
     );
-}
-
-function satisfiesScreenSizeRequirement(){
-    return window.innerWidth >= config.minWidth;
 }

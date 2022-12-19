@@ -1,7 +1,8 @@
-import {Button} from "./utils";
 import {useState, useEffect} from "react";
 import {generateRandString} from "./utils";
 import {config} from "./Constants";
+import TestInput from "./TestInput";
+import TestOutput from "./TestOutput";
 
 export default function Test({handleDivChange, globTestProgress, reps, duration, startState=0}){
 
@@ -9,6 +10,17 @@ export default function Test({handleDivChange, globTestProgress, reps, duration,
     let [currInput, setCurrInput] = useState("");
     let [str, setStr] = useState(generateRandString());
     let [remTime, setRemTime] = useState(config.testCountDown); // Countdown-Zeit ändern
+
+    var renderedStrL = [];
+    var renderedStrR = [];
+
+    for(let i = 0; i<str.randString.length; i++){
+        if(currInput[i] === undefined){
+            renderedStrR.push(<span>{str.randString[i]}</span>);
+        } else{
+            renderedStrL.push(<span>{str.randString[i]}</span>);
+        }
+    }
 
     useEffect(()=>{
         setTimeout(()=>{setRemTime(remTime-1)}, 1000); // Funktioniert irgendwie
@@ -48,9 +60,7 @@ export default function Test({handleDivChange, globTestProgress, reps, duration,
         ) : (
             <>
                 <div className="form-group">
-                    <label htmlFor="test-1" className="concentration-test-text pb-2" style={{paddingLeft: '13px'}} >
-                        {str.randString}
-                    </label>
+                    <TestOutput currInput={currInput} renderedStrL={renderedStrL} renderedStrR={renderedStrR}/>
                     <TestInput currInput={currInput} setCurrInput={setCurrInput}/>
                 </div>
 
@@ -61,51 +71,8 @@ export default function Test({handleDivChange, globTestProgress, reps, duration,
     );
 }
 
-export function TestInput({currInput, setCurrInput}){
 
-    useEffect(()=>{
-          window.onkeydown  = (e) => {
-            if (e.code === "KeyX"){
-                setCurrInput(currInput + "x");
-            } else if (e.code === "Space"){
-                setCurrInput(currInput + "_");
-            } else if (e.code === "Backspace"){
-                setCurrInput(currInput.slice(0, -1));
-            }
-        }
-    })
 
-    return(
-        <div>
-            <div className="concentration-test-text form-control" id="test-input">{currInput}</div>
-
-            <div className="mx-auto" style={{width: "fit-content"}}>
-                <Button color="success" handleClick={({target}) => {
-                    setCurrInput(currInput + "x");
-                    target.blur(); // Nimmt den Fokus vom Button wieder weg.
-                                   // Damit wird verhindert, dass z.Bsp. <Space> auf den Button anstatt des Textes angewendet wird.
-                }} extraClasses="x_">X</Button>
-                <Button color="danger" handleClick={({target}) => {
-                    setCurrInput(currInput + "_");
-                    target.blur();
-                }} extraClasses="x_">_</Button>
-                <Button color="warning" handleClick={({target}) => {
-                    setCurrInput(currInput.slice(0, -1));
-                    target.blur();
-                }} extraClasses="x_">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                         className="bi bi-backspace" viewBox="0 0 16 16">
-                        <path
-                            d="M5.83 5.146a.5.5 0 0 0 0 .708L7.975 8l-2.147 2.146a.5.5 0 0 0 .707.708l2.147-2.147 2.146 2.147a.5.5 0 0 0 .707-.708L9.39 8l2.146-2.146a.5.5 0 0 0-.707-.708L8.683 7.293 6.536 5.146a.5.5 0 0 0-.707 0z"/>
-                        <path
-                            d="M13.683 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-7.08a2 2 0 0 1-1.519-.698L.241 8.65a1 1 0 0 1 0-1.302L5.084 1.7A2 2 0 0 1 6.603 1h7.08zm-7.08 1a1 1 0 0 0-.76.35L1 8l4.844 5.65a1 1 0 0 0 .759.35h7.08a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1h-7.08z"/>
-                    </svg>
-                </Button>
-            </div>
-        </div>
-    )
-
-}
 
 function evalInput(input, solution, id){
     let aF = 0;
