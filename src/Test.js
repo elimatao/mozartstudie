@@ -13,13 +13,18 @@ export default function Test({handleDivChange, globTestProgress, reps, duration,
 
     var renderedStrL = [];
     var renderedStrR = [];
+    var renderedInput = [];
 
     for(let i = 0; i<str.randString.length; i++){
         if(currInput[i] === undefined){
-            renderedStrR.push(<span>{str.randString[i]}</span>);
+            renderedStrR.push(<span key={i}>{str.randString[i]}</span>);
         } else{
-            renderedStrL.push(<span>{str.randString[i]}</span>);
+            renderedStrL.push(<span key={i}>{str.randString[i]}</span>);
         }
+    }
+
+    for (let i = 0; i < currInput.length; i++) {
+        renderedInput.push(<span key={i}>{currInput[i]}</span>);
     }
 
     useEffect(()=>{
@@ -51,6 +56,12 @@ export default function Test({handleDivChange, globTestProgress, reps, duration,
         }
     }, [testProgress])
 
+    useEffect(()=>{
+        if(currInput.length > str.randString.length){
+            setCurrInput(currInput.slice(0, str.randString.length));
+        }
+    }, [currInput])
+
     return (
         testProgress === 0 ? (
             <div className="text-center">
@@ -60,7 +71,7 @@ export default function Test({handleDivChange, globTestProgress, reps, duration,
         ) : (
             <>
                 <div className="form-group">
-                    <TestOutput currInput={currInput} renderedStrL={renderedStrL} renderedStrR={renderedStrR}/>
+                    <TestOutput currInput={renderedInput} renderedStrL={renderedStrL} renderedStrR={renderedStrR}/>
                     <TestInput currInput={currInput} setCurrInput={setCurrInput}/>
                 </div>
 

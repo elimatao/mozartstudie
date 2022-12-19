@@ -6,7 +6,6 @@
 
 
 .App {
-  /*font-family: nsm;*/
   font-size: 18px;
   position: absolute;
   left: 50%;
@@ -29,13 +28,16 @@
   /*margin-bottom: 48px;*/
 }
 
-/*@import url('https://fontlibrary.org/face/dejavu-sans-mono');*/
 .concentration-test-text{
   text-align: left;
-  letter-spacing: 8px; /* Macht nur Buchstaben auseinander, ändert nichts an den Breitenunterschieden einzelner Zeichen */
   font-size: 1rem;
   font-family: nsm;
   overflow: hidden;
+}
+
+/* Großes Dankeschön an Thomas */
+.concentration-test-text span{
+  padding-right: 0.5rem;
 }
 
 #test-input{

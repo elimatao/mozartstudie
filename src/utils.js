@@ -21,11 +21,11 @@ export function generateRandString(strLen=56){
         if(Math.random() < 0.25){ // Verteilung: 1/4
             let posChar = Math.floor(Math.random() * goodChars.length);
             solutionString += "x";
-            randString.push(goodChars[posChar].normalize("NFKD"));
+            randString.push(goodChars[posChar]);
         } else{
             let posChar = Math.floor(Math.random() * badChars.length);
             solutionString += "_";
-            randString.push(badChars[posChar].normalize("NFKD"));
+            randString.push(badChars[posChar]);
         }
     }
     return {solutionString, randString};

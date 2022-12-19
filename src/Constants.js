@@ -3,14 +3,14 @@ const dev = {
 
     testCountDown: 1,
     test1:{
-        duration: 40,
+        duration: 20,
         reps: 4
     },
     test2:{
         duration: 3,
         reps: 2
     },
-    startDiv: 2, // #######################################
+    startDiv: 1, // #######################################
     music: {
         controls: 2,
         duration: 5

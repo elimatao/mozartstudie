@@ -55,7 +55,7 @@ export default function Introduction({handleDivChange}){
 
 
 function IntroductionTest({setInputCorrect}){
-    const [currInput, setCurrInput] = useState("");
+    const [currInput, setCurrInput] = useState([]);
     
     let inputCorrect = true;
 
@@ -68,34 +68,37 @@ function IntroductionTest({setInputCorrect}){
 
     var renderedStrL = [];
     var renderedStrR = [];
+    var renderedInput = [];
     
-    str.map((c, i)=>{  // c: Objekt aus der Liste, i: Listenindex
+    for (let i = 0; i < str.length; i++) {
         if(currInput[i] === undefined){
-            renderedStrR.push(<span key={i}>{c}</span>);
+            renderedStrR.push(<span key={i}>{str[i]}</span>);
+            inputCorrect = false;
+        } else if(currInput[i] === solutionStr[i]){
+            renderedStrL.push(<span key={i} className="text-success">{str[i]}</span>)
+        } else{
+            renderedStrL.push(<span key={i} className={"text-danger"}>{str[i]}</span>);
             inputCorrect = false;
         }
-        
-        else if(currInput[i] === solutionStr[i]){
-            renderedStrL.push(<span key={i} className={"text-success"}>{c}</span>);
-        }
-        else{
-            renderedStrL.push(<span key={i} className={"text-danger"}>{c}</span>);
-            inputCorrect = false;
-        }
-    })
+    }
 
+    for (let i = 0; i < currInput.length; i++) {
+        renderedInput.push(<span key={i}>{currInput[i]}</span>);
+    }
 
     useEffect(()=>{
         setInputCorrect(inputCorrect);
     }, [inputCorrect]);
-    
+
     useEffect(()=>{
-        setCurrInput(currInput.slice(0, str.length));
+        if(currInput.length > str.length){
+            setCurrInput(currInput.slice(0, str.length));
+        }
     }, [currInput])
 
     return(
         <div className="form-group">
-            <TestOutput currInput={currInput} renderedStrL={renderedStrL} renderedStrR={renderedStrR}/>
+            <TestOutput currInput={renderedInput} renderedStrL={renderedStrL} renderedStrR={renderedStrR}/>
             <TestInput currInput={currInput} setCurrInput={setCurrInput} />
         </div>
     );
