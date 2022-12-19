@@ -12,11 +12,11 @@ export default function Form({handleDivChange}){
             <div className="form-group col-6">
                 <label className="" htmlFor="gender">Welches Geschlecht hast du?</label>
                 <div className="">
-                    <select className="form-control" id="gender">
+                    <select className="form-control" id="gender" defaultValue="-">
                         <option value="w">weiblich</option>
                         <option value="m">männlich</option>
                         <option value="d">nicht-binär</option>
-                        <option value="-" selected>keine Angabe</option>
+                        <option value="-">keine Angabe</option>
                     </select>
                 </div>
             </div>
@@ -41,8 +41,8 @@ export default function Form({handleDivChange}){
                 <div className="form-group col-6">
                     <label className="" htmlFor="usedHeadphones">Hast du Kopfhörer verwendet?</label>
                     <div className="">
-                        <select className="form-control" id="usedHeadphones">
-                            <option value="0" selected>Nein</option>
+                        <select className="form-control" id="usedHeadphones" defaultValue="0">
+                            <option value="0">Nein</option>
                             <option value="1">Ja</option>
                         </select>
                     </div>
@@ -50,8 +50,8 @@ export default function Form({handleDivChange}){
                 <div className="form-group col-6">
                     <label className="" htmlFor="enjoyedMedia">Wie hat dir die Musik gefallen?</label>
                     <div className="">
-                        <select className="form-control" id="enjoyedMedia">
-                            <option value="4" selected>Hat mir sehr gefallen</option>
+                        <select className="form-control" id="enjoyedMedia" defaultValue="4">
+                            <option value="4">Hat mir sehr gefallen</option>
                             <option value="3">Hat mir eher gefallen</option>
                             <option value="2">Hat mir eher nicht gefallen</option>
                             <option value="1">Hat mir überhaupt nicht gefallen</option>
