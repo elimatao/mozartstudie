@@ -26,7 +26,7 @@ export default function Introduction({handleDivChange}){
             </p>
 
             <h2>So funktioniert der Test</h2>
-            <p>Du bekommst in kurzer Zeit hintereinander mehrere Eingabefelder so wie dieses hier:</p>
+            <p>Du bekommst in kurzer Zeit hintereinander mehrere Eingabefelder wie dieses hier:</p>
 
             <IntroductionTest setInputCorrect={setInputCorrect}/>
 
