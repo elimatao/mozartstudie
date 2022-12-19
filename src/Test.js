@@ -28,9 +28,10 @@ export default function Test({handleDivChange, globTestProgress, reps, duration,
     }
 
     useEffect(()=>{
-        setTimeout(()=>{setRemTime(remTime-1)}, 1000); // Funktioniert irgendwie
+        //console.log(remTime);
 
         if (remTime == 0){
+            setRemTime(duration);
 
             if (testProgress > 0){
                 // Schließt letzten Test ab.
@@ -39,7 +40,10 @@ export default function Test({handleDivChange, globTestProgress, reps, duration,
             }
 
             setTestProgress(testProgress+1);
+        } else{
+            setTimeout(()=>{setRemTime(remTime-1)}, 1000); // Funktioniert irgendwie
         }
+        console.log(remTime);
     }, [remTime])
 
     useEffect(()=>{
@@ -49,7 +53,6 @@ export default function Test({handleDivChange, globTestProgress, reps, duration,
         else if (testProgress <= reps){
             // Startet neuen Test
             setStr(generateRandString());// generiert neue Strings
-            setRemTime(duration);
 
         } else if (testProgress > reps){
             handleDivChange(testProgress); // alles aufräumen

@@ -1,16 +1,16 @@
 const dev = {
     url: "http://localhost:5000/",
 
-    testCountDown: 1,
+    testCountDown: 3,
     test1:{
-        duration: 20,
+        duration: 10,
         reps: 4
     },
     test2:{
         duration: 3,
         reps: 2
     },
-    startDiv: 0, // #######################################
+    startDiv: 1, // #######################################
     music: {
         controls: 2,
         duration: 5
