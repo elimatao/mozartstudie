@@ -20,6 +20,11 @@ export default function Introduction({handleDivChange}){
                     <li>Wir werten die Daten aus und veröffentlichen hier bald unsere Ergebnisse. Alles ist natürlich komplett <b>anonym</b>.</li>
                 </ol>
 
+            <p>
+                Die Durchführung des Tests wird maximal 15 Minuten Zeit in Anspruch nehmen. Bitte unterbreche ihn nicht, 
+                da sonst möglicherweise die Ergebnisse verfälscht werden könnten. 
+            </p>
+
             <h2>So funktioniert der Test</h2>
             <p>Du bekommst in kurzer Zeit hintereinander mehrere Eingabefelder so wie dieses hier:</p>
 

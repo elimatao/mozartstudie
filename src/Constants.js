@@ -10,7 +10,7 @@ const dev = {
         duration: 4,
         reps: 3
     },
-    startDiv: 5, // #######################################
+    startDiv: 0, // #######################################
     music: {
         controls: 2,
         duration: 5
